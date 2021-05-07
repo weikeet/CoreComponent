@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+  implementation(DepLibs.KotlinLib)
   implementation(AndroidXLibs.CoreKtx)
   implementation(AndroidXLibs.AppCompat)
   implementation(AndroidXLibs.FragmentKtx)
