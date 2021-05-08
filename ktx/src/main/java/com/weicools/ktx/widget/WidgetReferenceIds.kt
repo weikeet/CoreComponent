@@ -1,4 +1,4 @@
-package com.weicools.ktx
+package com.weicools.ktx.widget
 
 import androidx.core.view.ViewCompat
 

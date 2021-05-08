@@ -1,6 +1,6 @@
 @file:Suppress("unused", "FunctionName")
 
-package com.weicools.ktx
+package com.weicools.ktx.widget
 
 import android.content.Context
 import android.view.View

@@ -1,12 +1,11 @@
 @file:Suppress("FunctionName")
 
-package com.weicools.ktx
+package com.weicools.ktx.widget
 
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.weicools.ktx.wrapContent
 
 /**
  * @author Weicools Create on 2021.03.27
