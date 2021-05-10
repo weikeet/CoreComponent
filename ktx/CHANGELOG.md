@@ -1,5 +1,11 @@
 # CHANGELOG
 
+### 2021.05.08
+
+<!-- skydoves/whatif -->
+
+- add fluent kotlin extension, for handling single if-else statements, nullable, collections, and boolean.
+
 ### 2021.05.06
 
 <!-- skydoves/bundler -->
