@@ -8,6 +8,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "CoreComponent"
 include ":app"
+include ':core'
 include ":ktx"
 include ":utils"
 include ":widget"

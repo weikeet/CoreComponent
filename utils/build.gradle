@@ -40,7 +40,4 @@ dependencies {
   implementation(DepLibs.KotlinLib)
   implementation(AndroidXLibs.CoreKtx)
   implementation(AndroidXLibs.AppCompat)
-  implementation(AndroidXLibs.FragmentKtx)
-  implementation(AndroidXLibs.MaterialDesign)
-  implementation(AndroidXLibs.ConstraintLayout)
 }

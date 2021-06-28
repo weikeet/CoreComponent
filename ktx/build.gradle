@@ -41,6 +41,4 @@ dependencies {
   implementation(AndroidXLibs.CoreKtx)
   implementation(AndroidXLibs.AppCompat)
   implementation(AndroidXLibs.Annotation)
-  implementation(AndroidXLibs.MaterialDesign)
-  implementation(AndroidXLibs.ConstraintLayout)
 }
