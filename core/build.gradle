@@ -17,22 +17,18 @@ android {
   }
 
   buildTypes {
-    release {
+    debug {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
-  }
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_6
-    targetCompatibility JavaVersion.VERSION_1_6
-  }
-  kotlinOptions {
-    jvmTarget = '1.6'
+    release {
+      minifyEnabled true
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
   }
 }
 
 dependencies {
-
   implementation(DepLibs.KotlinLib)
   implementation(AndroidXLibs.CoreKtx)
   implementation(AndroidXLibs.AppCompat)
