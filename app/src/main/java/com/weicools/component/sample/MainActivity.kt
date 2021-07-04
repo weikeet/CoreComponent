@@ -1,4 +1,4 @@
-package com.weicools.common
+package com.weicools.component.sample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
