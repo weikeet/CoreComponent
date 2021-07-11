@@ -3,7 +3,7 @@ package com.weicools.core.app
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStoreOwner
+import com.weicools.core.lifecycle.AppViewModelProviders
 
 
 /**
@@ -18,17 +18,7 @@ open class BaseActivity : AppCompatActivity() {
   protected fun <T : ViewModel> getAppScopeViewModel(modelClass: Class<T>): T {
     val provider = appScopeProvider
     return if (provider == null) {
-      if (application == null) {
-        throw IllegalStateException(
-          "Your activity/fragment is not yet attached to Application. You can't request ViewModel before onCreate call."
-        )
-      }
-
-      val viewModelStore: ViewModelStoreOwner = requireNotNull(application as? ViewModelStoreOwner) {
-        "Your Application is not implements ViewModelStoreOwner."
-      }
-      val viewModelFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-      val viewModelProvider = ViewModelProvider(viewModelStore, viewModelFactory)
+      val viewModelProvider = AppViewModelProviders.of(this)
       appScopeProvider = viewModelProvider
       viewModelProvider.get(modelClass)
     } else {
