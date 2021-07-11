@@ -1,7 +1,11 @@
 plugins {
   id 'com.android.library'
   id 'kotlin-android'
+  id 'jacoco'
+  // id 'org.jetbrains.dokka-android'
 }
+apply from: rootProject.file('gradle/publish-docs.gradle')
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
 
 android {
   compileSdkVersion 30
@@ -9,22 +13,12 @@ android {
 
   defaultConfig {
     minSdkVersion 16
-    targetSdkVersion 30
-    versionCode 1
-    versionName "1.0"
 
     consumerProguardFiles "consumer-rules.pro"
   }
 
-  buildTypes {
-    debug {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-    }
-    release {
-      minifyEnabled true
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-    }
+  compileOptions {
+    kotlinOptions.freeCompilerArgs += ['-module-name', "core"]
   }
 }
 
