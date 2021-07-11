@@ -1,8 +1,10 @@
 package com.weicools.core.app
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.weicools.core.global.AppGlobal
 
 /**
  * @author weicools
@@ -13,9 +15,15 @@ open class BaseApplication : Application(), ViewModelStoreOwner {
 
   override fun getViewModelStore(): ViewModelStore = appViewModelStore
 
+  override fun attachBaseContext(base: Context) {
+    super.attachBaseContext(base)
+    AppGlobal.initAppContext(base)
+  }
+
   override fun onCreate() {
     super.onCreate()
 
+    AppGlobal.initApplication(this)
     appViewModelStore = ViewModelStore()
   }
 }
