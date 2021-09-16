@@ -27,7 +27,7 @@ object ProcessUtils {
   @JvmStatic
   fun getProcessName(): String {
     val name = processName
-    if (name != null && TextUtils.isEmpty(name)) {
+    if (name != null && !TextUtils.isEmpty(name)) {
       return name
     }
 
@@ -39,14 +39,14 @@ object ProcessUtils {
     }
 
     val reflectProcessName = getProcessNameByReflect()
-    if (reflectProcessName != null && TextUtils.isEmpty(reflectProcessName)) {
+    if (reflectProcessName != null && !TextUtils.isEmpty(reflectProcessName)) {
       Log.d(TAG, "getProcessName: by Reflect=$reflectProcessName")
       processName = reflectProcessName
       return reflectProcessName
     }
 
     val cmdlineProcessName = getProcessNameByCmdline()
-    if (cmdlineProcessName != null && TextUtils.isEmpty(cmdlineProcessName)) {
+    if (cmdlineProcessName != null && !TextUtils.isEmpty(cmdlineProcessName)) {
       Log.d(TAG, "getProcessName: by Cmdline=$cmdlineProcessName")
       processName = cmdlineProcessName
       return cmdlineProcessName
