@@ -9,17 +9,13 @@ import androidx.core.content.ContextCompat
 import com.weicools.ktx.core.KtxInitializer
 import kotlin.math.roundToInt
 
-val Int.dp
-  get() = (Resources.getSystem().displayMetrics.density * this).roundToInt()
+val Int.dp get() = (Resources.getSystem().displayMetrics.density * this).roundToInt()
 
-val Float.dp
-  get() = (Resources.getSystem().displayMetrics.density * this)
+val Float.dp get() = (Resources.getSystem().displayMetrics.density * this)
 
-val widthPixels
-  get() = (Resources.getSystem().displayMetrics.widthPixels)
+val widthPixels get() = (Resources.getSystem().displayMetrics.widthPixels)
 
-val heightPixels
-  get() = (Resources.getSystem().displayMetrics.heightPixels)
+val heightPixels get() = (Resources.getSystem().displayMetrics.heightPixels)
 
 fun stringOf(@StringRes stringId: Int) = KtxInitializer.context.getString(stringId)
 
