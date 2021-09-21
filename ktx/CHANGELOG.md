@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 2021.09.18
+
+- move kotlin dsl layout to lecymeng/FluentLayout repo
+
 ### 2021.05.08
 
 <!-- skydoves/whatif -->
