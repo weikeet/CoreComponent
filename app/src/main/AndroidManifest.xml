@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".preferences.PreferencesProvider"
+            android:authorities="com.weicools.component.preferences"
+            android:exported="false"
+            android:process=":work" />
     </application>
 
 </manifest>
