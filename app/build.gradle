@@ -5,13 +5,12 @@ plugins {
 }
 
 android {
-  compileSdkVersion 30
-  buildToolsVersion "30.0.3"
-
+  compileSdkVersion 31
+  buildToolsVersion '31.0.0'
   defaultConfig {
     applicationId "com.weicools.component.sample"
     minSdkVersion 21
-    targetSdkVersion 30
+    targetSdkVersion 31
     versionCode 1
     versionName "1.0"
   }
@@ -29,13 +28,14 @@ android {
 
   buildFeatures {
     dataBinding = true
-    // viewBinding = true
+    viewBinding = true
   }
 
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
+
   kotlinOptions {
     jvmTarget = '1.8'
   }
@@ -48,8 +48,7 @@ dependencies {
   implementation(AndroidXLibs.FragmentKtx)
   implementation(AndroidXLibs.MaterialDesign)
   implementation(AndroidXLibs.ConstraintLayout)
-
-  implementation "androidx.work:work-runtime-ktx:2.5.0"
+  implementation(AndroidXLibs.WorkManagerKtx)
 
   implementation(ImageLoaderLibs.Glide)
   implementation(ImageLoaderLibs.GlideTransformations)
