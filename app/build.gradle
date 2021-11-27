@@ -50,6 +50,8 @@ dependencies {
   implementation(AndroidXLibs.ConstraintLayout)
   implementation(AndroidXLibs.WorkManagerKtx)
 
+  implementation(ArchitectureLibs.Startup)
+
   implementation(ImageLoaderLibs.Glide)
   implementation(ImageLoaderLibs.GlideTransformations)
 

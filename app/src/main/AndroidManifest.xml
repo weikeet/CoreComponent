@@ -23,6 +23,16 @@
         </activity>
 
         <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="com.weicools.component.sample.initializer.AppInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
+        <provider
             android:name=".preferences.PreferencesProvider"
             android:authorities="com.weicools.component.preferences"
             android:exported="false"

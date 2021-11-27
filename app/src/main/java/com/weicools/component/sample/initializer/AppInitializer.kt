@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.weicools.ktx.core
+package com.weicools.component.sample.initializer
 
 import android.content.Context
 import android.util.Log
@@ -23,10 +23,9 @@ import androidx.startup.Initializer
  * @author weiwei
  * @date 2021.11.27
  */
-class KtxInitializer : Initializer<Unit> {
+class AppInitializer : Initializer<Unit> {
   override fun create(context: Context) {
-    Log.d("KtxInitializer", "create: ")
-    KtxGlobal.appContext = context
+    Log.d("AppInitializer", "create: ")
   }
 
   override fun dependencies(): List<Class<out Initializer<*>>> {
