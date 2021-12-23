@@ -14,3 +14,4 @@ include ":ktx"
 include ":utils"
 include ":widget"
 include ':taskscheduler'
+include ':viewbinding'
