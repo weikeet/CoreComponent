@@ -4,18 +4,38 @@ import android.app.Activity;
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
-import com.weicools.core.app.BaseApplication;
 import com.weicools.core.global.AppGlobal;
 
 /**
  * @author weicools
  * @date 2021.07.05
  */
-public final class AppViewModelProviders {
+public final class AppViewModelProviders implements ViewModelStoreOwner {
+  private static final class Holder {
+    private static final AppViewModelProviders INSTANCE = new AppViewModelProviders();
+  }
+
+  private final ViewModelStore appViewModelStore;
+
+  private AppViewModelProviders() {
+    this.appViewModelStore = new ViewModelStore();
+  }
+
+  @NonNull
+  @Override
+  public ViewModelStore getViewModelStore() {
+    return appViewModelStore;
+  }
+
+  public static AppViewModelProviders getAppStoreOwner() {
+    return Holder.INSTANCE;
+  }
+
   public static ViewModelProvider of() {
-    BaseApplication application = AppGlobal.get().getApplication();
-    return new ViewModelProvider(application, ViewModelProvider.AndroidViewModelFactory.getInstance(application));
+    Application application = AppGlobal.get().getApplication();
+    return new ViewModelProvider(getAppStoreOwner(), ViewModelProvider.AndroidViewModelFactory.getInstance(application));
   }
 
   public static ViewModelProvider of(@NonNull Activity activity) {
@@ -24,11 +44,6 @@ public final class AppViewModelProviders {
       throw new IllegalStateException("Your activity/fragment is not yet attached to Application. You can't request ViewModel before onCreate call.");
     }
 
-    if (!(application instanceof ViewModelStoreOwner)) {
-      throw new IllegalStateException("Your application is not implements ViewModelStoreOwner");
-    }
-    ViewModelStoreOwner storeOwner = (ViewModelStoreOwner) application;
-    return new ViewModelProvider(storeOwner, ViewModelProvider.AndroidViewModelFactory.getInstance(application));
+    return new ViewModelProvider(getAppStoreOwner(), ViewModelProvider.AndroidViewModelFactory.getInstance(application));
   }
-
 }
