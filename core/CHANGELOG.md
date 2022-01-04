@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 1.0.2 - JAN 04, 2022
+
+- add animated theme
+
 ## 1.0.1 - Nov 23, 2021
 
 - optimize Application ViewModel, UnPeekLiveData
