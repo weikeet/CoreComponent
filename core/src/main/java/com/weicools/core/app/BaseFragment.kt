@@ -17,6 +17,7 @@ import com.weicools.core.utils.getStackTrace
 open class BaseFragment : Fragment() {
   lateinit var attachActivity: AppCompatActivity
 
+  //region provider ViewModel
   private var appScopeProvider: ViewModelProvider? = null
   private var activityScopeProvider: ViewModelProvider? = null
   private var fragmentScopeProvider: ViewModelProvider? = null
@@ -62,6 +63,7 @@ open class BaseFragment : Fragment() {
       provider.get(modelClass)
     }
   }
+  //endregion
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
@@ -89,11 +91,7 @@ open class BaseFragment : Fragment() {
   override fun onDestroyView() {
     super.onDestroyView()
 
-    isCallUserVisibleHint = false
-    isVisibleForUser = false
-    isUserVisible = false
-
-    userVisibleCount = 0
+    resetVisibleRecord()
   }
 
   @Suppress("DEPRECATION")
@@ -172,6 +170,14 @@ open class BaseFragment : Fragment() {
         onUserVisibleChanged(false)
       }
     }
+  }
+
+  private fun resetVisibleRecord() {
+    isCallUserVisibleHint = false
+    isVisibleForUser = false
+    isUserVisible = false
+
+    userVisibleCount = 0
   }
   //endregion
 }
