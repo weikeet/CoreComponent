@@ -2,6 +2,18 @@
 
 A core component library for Android: fast implementation feature
 
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/lecymeng/FluentLayout/blob/master/LICENSE)
+![jetbrains-plugin](https://img.shields.io/jetbrains/plugin/v/9202-a8translate.svg)
+
+## Latest version
+
+- core: ![maven-central](https://img.shields.io/maven-central/v/com.weicools/core.svg)
+- core-ktx: ![maven-central](https://img.shields.io/maven-central/v/com.weicools/core-ktx.svg)
+- mmkv-ktx: ![maven-central](https://img.shields.io/maven-central/v/com.weicools/mmkv-ktx.svg)
+- task-scheduler: ![maven-central](https://img.shields.io/maven-central/v/com.weicools/task-scheduler.svg)
+- utils: ![maven-central](https://img.shields.io/maven-central/v/com.weicools/utils.svg)
+- view-binding: ![maven-central](https://img.shields.io/maven-central/v/com.weicools/view-binding.svg)
+
 ## Build
 
 1. init buildSrc
