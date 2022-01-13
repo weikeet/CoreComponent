@@ -2,13 +2,16 @@ package com.weiwei.extensions
 
 import android.content.res.ColorStateList
 import android.content.res.Resources
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.FontRes
 import androidx.annotation.StringRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.weiwei.extensions.core.LibGlobalScope
 import kotlin.math.roundToInt
 
@@ -47,3 +50,6 @@ fun dimenSizeOf(@DimenRes dimenId: Int): Int =
 
 fun dimenOffsetOf(@DimenRes dimenId: Int): Int =
   LibGlobalScope.context.resources.getDimensionPixelOffset(dimenId)
+
+fun fontOf(@FontRes fontId: Int): Typeface? =
+  ResourcesCompat.getFont(LibGlobalScope.context, fontId)
