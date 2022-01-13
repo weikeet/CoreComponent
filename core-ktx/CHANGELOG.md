@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.1.0 - JAN 13, 2022
+
+- archive whatif extensions
+- rename ktx to core-ktx
+- rename com.weicools to com.weiwei
+- impl global get font res, dimen res
+
 ### 2021.09.18
 
 - move kotlin dsl layout to lecymeng/FluentLayout repo
