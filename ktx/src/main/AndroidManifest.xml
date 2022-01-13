@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.weicools.ktx">
+    package="com.weiwei.extensions">
 
     <application>
         <provider
@@ -10,7 +10,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.weicools.ktx.core.KtxInitializer"
+                android:name="com.weiwei.extensions.core.LibInitializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

@@ -37,7 +37,7 @@ android {
   }
 
   compileOptions {
-    kotlinOptions.freeCompilerArgs += ['-module-name', "ktx"]
+    kotlinOptions.freeCompilerArgs += ['-module-name', "extensions"]
   }
 }
 

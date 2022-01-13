@@ -8,7 +8,7 @@ android {
   compileSdkVersion 31
   buildToolsVersion '31.0.0'
   defaultConfig {
-    applicationId "com.weicools.component.sample"
+    applicationId "com.weiwei.component.sample"
     minSdkVersion 21
     targetSdkVersion 31
     versionCode 1

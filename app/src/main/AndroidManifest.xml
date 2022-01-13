@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.weicools.component.sample">
+    package="com.weiwei.component.sample">
 
     <application
-        android:name=".SampleApp"
+        android:name="com.weiwei.component.sample.SampleApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +13,7 @@
         android:theme="@style/Theme.CoreComponent"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".MainActivity"
+            android:name="com.weiwei.component.sample.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,13 +28,13 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.weicools.component.sample.initializer.AppInitializer"
+                android:name="com.weiwei.component.sample.initializer.AppInitializer"
                 android:value="androidx.startup" />
         </provider>
 
         <provider
-            android:name=".preferences.PreferencesProvider"
-            android:authorities="com.weicools.component.preferences"
+            android:name="com.weiwei.component.sample.preferences.PreferencesProvider"
+            android:authorities="com.weiwei.component.preferences"
             android:exported="false"
             android:process=":work" />
     </application>
