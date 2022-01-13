@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 1.1.0 - JAN 13, 2022
+
+- rename com.weicools to com.weiwei
+
 ## 1.0.2 - JAN 04, 2022
 
 - add animated theme
