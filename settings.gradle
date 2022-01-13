@@ -13,5 +13,5 @@ include ':core'
 include ':core-ktx'
 include ":utils"
 include ":widget"
-include ':taskscheduler'
+include ':task-scheduler'
 include ':viewbinding'
