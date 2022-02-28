@@ -16,3 +16,4 @@ include ":widget"
 include ':view-binding'
 include ':task-scheduler'
 include ':mmkv-ktx'
+include ':theme-manager'
