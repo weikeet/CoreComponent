@@ -15,7 +15,6 @@
 
 package com.weiwei.theme
 
-import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
@@ -76,18 +75,6 @@ abstract class ThemeActivity : AppCompatActivity() {
       syncTheme(newTheme)
     }
   }
-
-  @Deprecated(
-    "this function is deprecated!",
-    ReplaceWith("themeViewDelegate.isRunningChangeThemeAnimation()")
-  )
-  fun isRunningChangeThemeAnimation(): Boolean = themeViewDelegate.isRunningChangeThemeAnimation()
-
-  @Deprecated(
-    "this function is deprecated!",
-    ReplaceWith("themeViewDelegate.setThemeAnimationListener(listener)")
-  )
-  fun setThemeAnimationListener(listener: AnimatorListenerAdapter) = themeViewDelegate.setThemeAnimationListener(listener)
 
   // to sync ui with selected theme
   abstract fun syncTheme(appTheme: AppTheme)
