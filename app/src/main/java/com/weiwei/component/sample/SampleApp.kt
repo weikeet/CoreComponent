@@ -1,10 +1,8 @@
 package com.weiwei.component.sample
 
 import android.app.Application
-import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import com.weiwei.component.sample.preferences.PreferencesProvider
 import com.weiwei.utils.process.ProcessUtils
 
 /**
@@ -19,7 +17,6 @@ class SampleApp : Application() {
 
         if (mainProcess()) {
             Log.d("SampleApp", "onCreate: mainProcess")
-            contentResolver.call(PreferencesProvider.getPreferenceUri(), "GET_NAME", null, Bundle())
         } else if (workProcess()) {
             Log.d("SampleApp", "onCreate: workProcess")
         }

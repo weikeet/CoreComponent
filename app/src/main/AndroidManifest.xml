@@ -32,11 +32,6 @@
                 android:value="androidx.startup" />
         </provider>
 
-        <provider
-            android:name="com.weiwei.component.sample.preferences.PreferencesProvider"
-            android:authorities="com.weiwei.component.preferences"
-            android:exported="false"
-            android:process=":work" />
     </application>
 
 </manifest>
