@@ -5,12 +5,11 @@ plugins {
 }
 
 android {
-  compileSdkVersion 31
-  buildToolsVersion '31.0.0'
+  compileSdkVersion 32
   defaultConfig {
     applicationId "com.weiwei.component.sample"
     minSdkVersion 21
-    targetSdkVersion 31
+    targetSdkVersion 32
     versionCode 1
     versionName "1.0"
   }
@@ -18,11 +17,16 @@ android {
   buildTypes {
     debug {
       minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+      proguardFile 'proguard-rules.pro'
+      proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
     }
+
     release {
       minifyEnabled true
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+      proguardFile 'proguard-rules.pro'
+      proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
     }
   }
 
@@ -58,4 +62,5 @@ dependencies {
   implementation project(':core-ktx')
   implementation project(':utils')
   implementation project(':widget')
+  implementation project(':theme-manager')
 }
