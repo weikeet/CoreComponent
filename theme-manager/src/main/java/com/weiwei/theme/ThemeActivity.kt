@@ -29,26 +29,26 @@ import androidx.appcompat.app.AppCompatActivity
 @Suppress("MemberVisibilityCanBePrivate")
 abstract class ThemeActivity : AppCompatActivity() {
 
-  protected val themeViewDelegate by lazy(LazyThreadSafetyMode.NONE) {
-    ThemeViewDelegate()
+  protected val themeDelegate by lazy(LazyThreadSafetyMode.NONE) {
+    ThemeDelegate { syncTheme(it) }
   }
 
   private fun createThemeView() {
-    ThemeManager.instance.init(this, getStartTheme())
-    themeViewDelegate.createThemeView(this)
-    super.setContentView(themeViewDelegate.root)
+    ThemeManager.instance.init(themeDelegate, getStartTheme())
+    themeDelegate.createThemeView(this)
+    super.setContentView(themeDelegate.root)
   }
 
   override fun setContentView(@LayoutRes layoutResID: Int) {
-    themeViewDelegate.setContentView(this, layoutResID)
+    themeDelegate.setContentView(this, layoutResID)
   }
 
   override fun setContentView(view: View?) {
-    themeViewDelegate.setContentView(view)
+    themeDelegate.setContentView(view)
   }
 
   override fun setContentView(view: View?, params: ViewGroup.LayoutParams?) {
-    themeViewDelegate.setContentView(view, params)
+    themeDelegate.setContentView(view, params)
   }
 
   override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
@@ -66,14 +66,7 @@ abstract class ThemeActivity : AppCompatActivity() {
   override fun onResume() {
     super.onResume()
 
-    ThemeManager.instance.setActivity(this)
-    ThemeManager.instance.getCurrentTheme()?.let { syncTheme(it) }
-  }
-
-  fun changeTheme(newTheme: AppTheme, sourceCoordinate: Coordinate, animDuration: Long, isReverse: Boolean) {
-    themeViewDelegate.changeTheme(newTheme, sourceCoordinate, animDuration, isReverse) {
-      syncTheme(newTheme)
-    }
+    themeDelegate.resumeSyncTheme()
   }
 
   // to sync ui with selected theme

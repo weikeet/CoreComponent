@@ -34,7 +34,7 @@ import kotlin.math.sqrt
  * @author weiwei
  * @date 2022.01.04
  */
-class ThemeViewDelegate {
+class ThemeDelegate(private val syncTheme: (AppTheme) -> Unit) {
   lateinit var root: View
     private set
 
@@ -99,11 +99,15 @@ class ThemeViewDelegate {
     decorView.addView(view, params)
   }
 
-  fun changeTheme(newTheme: AppTheme, sourceCoordinate: Coordinate, animDuration: Long, isReverse: Boolean, syncThemeAction: Runnable) {
+  fun resumeSyncTheme() {
+    ThemeManager.instance.setActivity(this)
+    ThemeManager.instance.getCurrentTheme()?.let { syncTheme(it) }
+  }
+
+  fun changeTheme(newTheme: AppTheme, sourceCoordinate: Coordinate, animDuration: Long, isReverse: Boolean) {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
       // update theme and return: no animation
-      // syncTheme(newTheme)
-      syncThemeAction.run()
+      syncTheme(newTheme)
       return
     }
 
@@ -122,8 +126,7 @@ class ThemeViewDelegate {
     decorView.draw(canvas)
 
     // update theme
-    // syncTheme(newTheme)
-    syncThemeAction.run()
+    syncTheme(newTheme)
 
     //create anim
     val finalRadius = sqrt((w * w + h * h).toDouble()).toFloat()

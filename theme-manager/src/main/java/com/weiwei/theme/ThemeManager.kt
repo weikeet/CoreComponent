@@ -34,17 +34,17 @@ class ThemeManager {
   }
 
   private var liveTheme: MutableLiveData<AppTheme> = MutableLiveData()
-  private lateinit var activity: ThemeActivity
+  private lateinit var themeDelegate: ThemeDelegate
 
-  fun init(activity: ThemeActivity, defaultTheme: AppTheme) {
+  fun init(delegate: ThemeDelegate, defaultTheme: AppTheme) {
     if (liveTheme.value == null) {
       this.liveTheme.value = defaultTheme
     }
-    this.activity = activity
+    this.themeDelegate = delegate
   }
 
-  fun setActivity(activity: ThemeActivity) {
-    this.activity = activity
+  fun setActivity(delegate: ThemeDelegate) {
+    this.themeDelegate = delegate
   }
 
   fun getCurrentTheme(): AppTheme? = getCurrentLiveTheme().value
@@ -63,18 +63,16 @@ class ThemeManager {
     changeTheme(newTheme, getViewCoordinates(view), duration)
   }
 
-  fun changeTheme(
-    newTheme: AppTheme, sourceCoordinate: Coordinate, duration: Long = 600, isRevers: Boolean = false
-  ) {
+  fun changeTheme(newTheme: AppTheme, sourceCoordinate: Coordinate, duration: Long = 600, isRevers: Boolean = false) {
 
-    if (getCurrentTheme()?.id() == newTheme.id() || activity.isRunningChangeThemeAnimation()) {
+    if (getCurrentTheme()?.id() == newTheme.id() || themeDelegate.isRunningChangeThemeAnimation()) {
       return
     }
 
-    //start animation
-    activity.changeTheme(newTheme, sourceCoordinate, duration, isRevers)
+    // start animation
+    themeDelegate.changeTheme(newTheme, sourceCoordinate, duration, isRevers)
 
-    //set LiveData
+    // set LiveData
     getCurrentLiveTheme().value = newTheme
   }
 
