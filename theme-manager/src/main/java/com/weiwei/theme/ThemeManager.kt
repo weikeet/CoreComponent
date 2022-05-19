@@ -19,6 +19,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.os.Build
 import android.view.View
+import android.view.WindowInsetsController
 import android.view.WindowManager
 import androidx.lifecycle.MutableLiveData
 
@@ -86,10 +87,16 @@ class ThemeManager {
     }
   }
 
+  @Suppress("DEPRECATION")
   fun syncStatusBarIconsColorWithBackground(activity: Activity, statusBarBackgroundColor: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      val window = activity.window
-      val decorView = window.decorView
+    val window = activity.window
+    val decorView = window.decorView
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+      window.insetsController?.setSystemBarsAppearance(
+        if (isColorLight(statusBarBackgroundColor)) WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS else 0,
+        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+      )
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       var flags = decorView.systemUiVisibility
       if (isColorLight(statusBarBackgroundColor)) {
         if (flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR == 0) {
@@ -113,11 +120,17 @@ class ThemeManager {
     }
   }
 
+  @Suppress("DEPRECATION")
   fun syncNavigationBarButtonsColorWithBackground(
     activity: Activity,
     navigationBarBackgroundColor: Int
   ) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+      activity.window.insetsController?.setSystemBarsAppearance(
+        if (isColorLight(navigationBarBackgroundColor)) WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS else 0,
+        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+      )
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       val decorView = activity.window.decorView
       var flags = decorView.systemUiVisibility
       flags = if (isColorLight(navigationBarBackgroundColor)) {
