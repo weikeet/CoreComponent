@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment
 
 /**
  * @author weiwei
- * @date 2022.03.01
+ * @date 2022.01.04
  */
 abstract class ThemeFragment : Fragment() {
   override fun onResume() {

@@ -44,4 +44,6 @@ android {
 dependencies {
   implementation(AndroidXLibs.CoreKtx)
   implementation(AndroidXLibs.AppCompat)
+
+  implementation project(':theme-manager')
 }

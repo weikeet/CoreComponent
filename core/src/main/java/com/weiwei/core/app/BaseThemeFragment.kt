@@ -15,24 +15,21 @@
 
 package com.weiwei.core.app
 
-import com.weiwei.core.app.theme.AppTheme
-import com.weiwei.core.app.theme.ThemeManager
+import com.weiwei.theme.AppTheme
+import com.weiwei.theme.ThemeManager
 
 /**
  * @author weiwei
  * @date 2022.01.04
  */
 abstract class BaseThemeFragment : BaseFragment() {
-
   override fun onResume() {
-    getThemeManager().getCurrentLiveTheme().observe(this) {
+    ThemeManager.instance.getCurrentLiveTheme().observe(this) {
       syncTheme(it)
     }
 
     super.onResume()
   }
-
-  protected fun getThemeManager(): ThemeManager = ThemeManager.instance
 
   // to sync ui with selected theme
   abstract fun syncTheme(appTheme: AppTheme)

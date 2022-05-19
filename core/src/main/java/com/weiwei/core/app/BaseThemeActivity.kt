@@ -20,7 +20,9 @@ import android.os.PersistableBundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import com.weiwei.core.app.theme.*
+import com.weiwei.theme.AppTheme
+import com.weiwei.theme.ThemeDelegate
+import com.weiwei.theme.ThemeManager
 
 /**
  * @author weiwei
@@ -28,34 +30,19 @@ import com.weiwei.core.app.theme.*
  */
 abstract class BaseThemeActivity : BaseActivity() {
 
-  private val themeDelegate: ThemeDelegate by lazy(LazyThreadSafetyMode.NONE) {
-    ThemeDelegate()
+  @Suppress("MemberVisibilityCanBePrivate")
+  protected val themeDelegate by lazy(LazyThreadSafetyMode.NONE) {
+    ThemeDelegate { syncTheme(it) }
   }
 
   private fun createThemeView() {
-    ThemeManager.instance.init(this, getStartTheme())
+    ThemeManager.instance.init(themeDelegate, getStartTheme())
     themeDelegate.createThemeView(this)
     super.setContentView(themeDelegate.root)
   }
 
-  override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-    super.onCreate(savedInstanceState, persistentState)
-    createThemeView()
-  }
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    createThemeView()
-  }
-
-  override fun onResume() {
-    super.onResume()
-    ThemeManager.instance.setActivity(this)
-    ThemeManager.instance.getCurrentTheme()?.let { syncTheme(it) }
-  }
-
   override fun setContentView(@LayoutRes layoutResID: Int) {
-    themeDelegate.setContentView(layoutResID, this)
+    themeDelegate.setContentView(this, layoutResID)
   }
 
   override fun setContentView(view: View?) {
@@ -66,29 +53,29 @@ abstract class BaseThemeActivity : BaseActivity() {
     themeDelegate.setContentView(view, params)
   }
 
-  fun changeTheme(newTheme: AppTheme, sourceCoordinate: Coordinate, animDuration: Long, isReverse: Boolean) {
-    themeDelegate.changeTheme(newTheme, sourceCoordinate, animDuration, isReverse) {
-      syncTheme(newTheme)
-    }
+  override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+    super.onCreate(savedInstanceState, persistentState)
+
+    createThemeView()
   }
 
-  fun isRunningChangeThemeAnimation(): Boolean = themeDelegate.isRunningChangeThemeAnimation()
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-  fun setThemeAnimationListener(listener: ThemeAnimationListener) {
-    themeDelegate.setThemeAnimationListener(listener)
+    createThemeView()
   }
 
-  fun getThemeManager(): ThemeManager = ThemeManager.instance
+  override fun onResume() {
+    super.onResume()
 
-  /**
-   * to sync ui with selected theme
-   */
+    themeDelegate.resumeSyncTheme()
+  }
+
+  // to sync ui with selected theme
   abstract fun syncTheme(appTheme: AppTheme)
 
-  /**
-   * to save the theme for the next time, save it in onDestroy() (exp: in pref or DB) and return it here.
-   * it just used for the first time (first activity).
-   */
+  // to save the theme for the next time, save it in onDestroy() (exp: in pref or DB) and return it here.
+  // it just used for the first time (first activity).
   abstract fun getStartTheme(): AppTheme
 
 }

@@ -24,11 +24,11 @@ import androidx.appcompat.app.AppCompatActivity
 
 /**
  * @author weiwei
- * @date 2022.02.28
+ * @date 2022.01.04
  */
-@Suppress("MemberVisibilityCanBePrivate")
 abstract class ThemeActivity : AppCompatActivity() {
 
+  @Suppress("MemberVisibilityCanBePrivate")
   protected val themeDelegate by lazy(LazyThreadSafetyMode.NONE) {
     ThemeDelegate { syncTheme(it) }
   }

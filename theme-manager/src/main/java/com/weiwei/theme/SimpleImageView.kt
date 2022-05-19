@@ -22,7 +22,7 @@ import android.view.View
 
 /**
  * @author weiwei
- * @date 2022.02.28
+ * @date 2022.01.04
  */
 internal class SimpleImageView(context: Context) : View(context) {
   var bitmap: Bitmap? = null
