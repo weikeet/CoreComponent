@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.weiwei.core.lifecycle.AppViewModelProviders
@@ -12,10 +13,10 @@ import com.weiwei.core.utils.getStackTrace
 /**
  * @author weicools
  * @date 2021.06.28
- * todo handle setMaxLifecycle
  */
 open class BaseFragment : Fragment() {
   lateinit var attachActivity: AppCompatActivity
+    private set
 
   //region provider ViewModel
   private var appScopeProvider: ViewModelProvider? = null
@@ -73,7 +74,6 @@ open class BaseFragment : Fragment() {
 
   override fun onResume() {
     super.onResume()
-    isFragmentResumed = true
 
     if (!isCallUserVisibleHint) {
       isVisibleForUser = !isHidden
@@ -83,7 +83,6 @@ open class BaseFragment : Fragment() {
 
   override fun onPause() {
     super.onPause()
-    isFragmentResumed = false
 
     handleVisibleChanged()
   }
@@ -95,6 +94,7 @@ open class BaseFragment : Fragment() {
   }
 
   @Suppress("DEPRECATION")
+  @Deprecated("Deprecated in Java")
   override fun setUserVisibleHint(isVisibleToUser: Boolean) {
     super.setUserVisibleHint(isVisibleToUser)
     isVisibleForUser = isVisibleToUser
@@ -128,14 +128,16 @@ open class BaseFragment : Fragment() {
    * when use ViewPager+Fragment form, [Fragment.setUserVisibleHint] will be called before the Fragment lifecycle function
    * although [Fragment.getUserVisibleHint] may be true, it is not visible, so Flag is needed to assist in judging the visibility.
    */
-  var isFragmentResumed = false
+  val isFragmentResumed get() = viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
 
   /**
    * the user is truly visible
    */
   var isUserVisible = false
+    private set
 
   var userVisibleCount = 0
+    private set
 
   /**
    * suitable for tasks that require lazy loading
