@@ -3,13 +3,17 @@ plugins {
   id 'kotlin-android'
   id 'kotlin-kapt'
 }
+// apply from: '../buildSrc/bye-bye-jetifier.gradle'
+apply from: '../buildSrc/check-versions.gradle'
 
 android {
-  compileSdkVersion 32
+  namespace 'com.weiwei.component.sample'
+  compileSdk 33
+
   defaultConfig {
     applicationId "com.weiwei.component.sample"
-    minSdkVersion 21
-    targetSdkVersion 32
+    minSdk 26
+    targetSdk 33
     versionCode 1
     versionName "1.0"
   }
